@@ -10,7 +10,6 @@ import { ContainerPage } from '../../ContainerPage/ContainerPage';
 
 export function Login() {
   const { errors, loginIn, user } = useStoreWithInitializer(({ login }) => login, dispatchOnCall(initializeLogin()));
-  console.log('erro', errors);
   return (
     <div className='auth-page'>
       <ContainerPage>
