@@ -24,9 +24,7 @@ export function Home() {
           />
         </div>
 
-        <div className='col-md-3'>
-          {/*<HomeSidebar tags={tags} />*/}
-        </div>
+        <div className='col-md-3'>{/*<HomeSidebar tags={tags} />*/}</div>
       </ContainerPage>
     </div>
   );
@@ -51,8 +49,8 @@ function renderBanner() {
   return (
     <div className='banner'>
       <div className='container'>
-        <h1 className='logo-font'>conduit</h1>
-        <p>A place to share your knowledge.</p>
+        <h1 className='logo-font'>Funny Movies</h1>
+        <p>A place to share your video.</p>
       </div>
     </div>
   );
@@ -90,4 +88,3 @@ async function getFeedOrGlobalArticles(filters: FeedFilters = {}) {
     !selectedTab.startsWith('#') ? filters : finalFilters
   );
 }
-
