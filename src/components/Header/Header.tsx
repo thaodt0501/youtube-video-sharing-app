@@ -10,7 +10,7 @@ export function Header() {
     <nav className='navbar navbar-light'>
       <div className='container'>
         <a className='navbar-brand' href='/#/'>
-          conduit
+          Funny Movie
         </a>
         <ul className='nav navbar-nav pull-xs-right'>
           <HashRouter>

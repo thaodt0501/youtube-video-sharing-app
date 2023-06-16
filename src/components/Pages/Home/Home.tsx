@@ -6,9 +6,37 @@ import { ArticlesViewer } from '../../ArticlesViewer/ArticlesViewer';
 import { changePage, loadArticles, startLoadingArticles } from '../../ArticlesViewer/ArticlesViewer.slice';
 import { ContainerPage } from '../../ContainerPage/ContainerPage';
 import { changeTab, loadTags, startLoadingTags } from './Home.slice';
+import socketIOClient from 'socket.io-client';
+import { useEffect } from 'react';
+
+
+const ENDPOINT = 'http://localhost:8081';
 
 export function Home() {
   const { selectedTab } = useStoreWithInitializer(({ home }) => home, load);
+
+  // @ts-ignore
+  useEffect(() => {
+    const socket = socketIOClient(ENDPOINT);
+    console.log(socket);
+
+    socket.on('connect', function() {
+      console.log('Connected');
+
+      socket.emit('events', { test: 'test' });
+      socket.emit('identity', 0, (response: any) =>
+        console.log('Identity:', response),
+      );
+    });
+    // Listen for 'videoCreated' event
+    socket.on('videoCreated', (video) => {
+      console.log('New video created: ', video);
+      // Here you can add the logic to handle the new video, e.g. update state or show notification
+    });
+
+    // Clean up the effect
+    return () => socket.disconnect();
+  }, []);
 
   return (
     <div className='home-page'>

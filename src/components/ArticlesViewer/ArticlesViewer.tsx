@@ -22,7 +22,6 @@ export function ArticlesViewer({
   onTabChange?: (tab: string) => void;
 }) {
   const { articles, articlesCount, currentPage } = useStore(({ articleViewer }) => articleViewer);
-  console.log(articles);
 
   return (
     <Fragment>
