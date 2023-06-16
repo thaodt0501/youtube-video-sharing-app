@@ -27,6 +27,7 @@ export function ArticlePreview({
         setTitle(data.title);
       });
   });
+
   return (
     <div className='article-preview'>
       <div style={{ display: 'flex', gap: 20 }}>

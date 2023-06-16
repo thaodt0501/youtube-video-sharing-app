@@ -77,7 +77,6 @@ export async function signUp(user: UserForRegistration): Promise<Result<User, Ge
 export async function createArticle(article: ArticleForEditor): Promise<Result<Article, GenericErrors>> {
   try {
     const { data } = await axios.post('video', article);
-    console.log(data);
     return Ok(guard(object({ video: articleDecoder }))(data).video);
   } catch ({ response: { data } }) {
     return Err(guard(object({ errors: genericErrorsDecoder }))(data).errors);
@@ -120,7 +119,7 @@ export async function getFeed(filters: FeedFilters = {}): Promise<MultipleArticl
     offset: 0,
     ...filters,
   };
-  return guard(multipleArticlesDecoder)((await axios.get(`articles/feed?${objectToQueryString(finalFilters)}`)).data);
+  return guard(multipleArticlesDecoder)((await axios.get(`video/feed?${objectToQueryString(finalFilters)}`)).data);
 }
 
 export async function getArticleComments(slug: string): Promise<Comment[]> {
