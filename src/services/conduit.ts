@@ -76,9 +76,9 @@ export async function signUp(user: UserForRegistration): Promise<Result<User, Ge
 
 export async function createArticle(article: ArticleForEditor): Promise<Result<Article, GenericErrors>> {
   try {
-    const { data } = await axios.post('articles', { article });
-
-    return Ok(guard(object({ article: articleDecoder }))(data).article);
+    const { data } = await axios.post('video', article);
+    console.log(data);
+    return Ok(guard(object({ video: articleDecoder }))(data).video);
   } catch ({ response: { data } }) {
     return Err(guard(object({ errors: genericErrorsDecoder }))(data).errors);
   }

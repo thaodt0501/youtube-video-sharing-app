@@ -19,8 +19,8 @@ async function onSubmit(ev: FormEvent) {
 
   result.match({
     err: (errors) => store.dispatch(updateErrors(errors)),
-    ok: ({ slug }) => {
-      location.hash = `#/article/${slug}`;
+    ok: () => {
+      location.hash = `#/article/`;
     },
   });
 }

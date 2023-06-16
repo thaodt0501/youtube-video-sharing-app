@@ -19,24 +19,17 @@ export function ArticleEditor({ onSubmit }: { onSubmit: (ev: React.FormEvent) =>
             errors={errors}
             onChange={onUpdateField}
             onSubmit={onSubmit}
-            submitButtonText='Publish Article'
+            submitButtonText='Share Movie'
             onAddItemToList={onAddTag}
             onRemoveListItem={onRemoveTag}
             fields={[
-              buildGenericFormField({ name: 'title', placeholder: 'Article Title' }),
-              buildGenericFormField({ name: 'description', placeholder: "What's this article about?", lg: false }),
+              buildGenericFormField({ name: 'link', placeholder: 'Youtube URL' }),
+              buildGenericFormField({ name: 'title', placeholder: "Movie Title", lg: false }),
               buildGenericFormField({
-                name: 'body',
-                placeholder: 'Write your article (in markdown)',
+                name: 'description',
+                placeholder: 'Description',
                 fieldType: 'textarea',
                 rows: 8,
-                lg: false,
-              }),
-              buildGenericFormField({
-                name: 'tag',
-                placeholder: 'Enter Tags',
-                listName: 'tagList',
-                fieldType: 'list',
                 lg: false,
               }),
             ]}

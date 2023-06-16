@@ -50,7 +50,7 @@ function GuestLinks() {
 function UserLinks({ user: { username } }: { user: User }) {
   return (
     <Fragment>
-      <NavItem text='New Article' href='/editor' icon='ion-compose' />
+      <NavItem text='Share a movie' href='/editor' icon='ion-compose' />
       <NavItem text='Settings' href='/settings' icon='ion-gear-a' />
       <NavItem text={`${username}`} href={`/profile/${username}`} />
     </Fragment>

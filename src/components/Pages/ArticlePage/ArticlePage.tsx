@@ -58,8 +58,7 @@ export function ArticlePage() {
 
         <div className='container page'>
           <div className='row article-content'>
-            <div className='col-md-12'>{article.body}</div>
-            <TagList tagList={article.tagList} />
+            {/*<div className='col-md-12'>{article.body}</div>*/}
           </div>
 
           <hr />
@@ -93,7 +92,7 @@ function ArticlePageBanner(props: { article: Article; metaSection: MetaSectionSt
   return (
     <div className='banner'>
       <div className='container'>
-        <h1>{props.article.title}</h1>
+        {/*<h1>{props.article.title}</h1>*/}
 
         <ArticleMeta {...props} />
       </div>
@@ -114,48 +113,48 @@ function ArticleMeta({
     <div className='article-meta'>
       <ArticleAuthorInfo article={article} />
 
-      {user.isSome() && user.unwrap().username === article.author.username ? (
-        <OwnerArticleMetaActions article={article} deletingArticle={deletingArticle} />
-      ) : (
-        <NonOwnerArticleMetaActions
-          article={article}
-          submittingFavorite={submittingFavorite}
-          submittingFollow={submittingFollow}
-        />
-      )}
+      {/*{user.isSome() && user.unwrap().username === article.author.username ? (*/}
+      {/*  <OwnerArticleMetaActions article={article} deletingArticle={deletingArticle} />*/}
+      {/*) : (*/}
+      {/*  <NonOwnerArticleMetaActions*/}
+      {/*    article={article}*/}
+      {/*    submittingFavorite={submittingFavorite}*/}
+      {/*    submittingFollow={submittingFollow}*/}
+      {/*  />*/}
+      {/*)}*/}
     </div>
   );
 }
 
 function ArticleAuthorInfo({
-  article: {
-    author: { username, image },
-    createdAt,
-  },
+  // article: {
+  //   author: { username, image },
+  //   createdAt,
+  // },
 }: {
   article: Article;
 }) {
   return (
     <Fragment>
-      <Link to={`/profile/${username}`}>
-        <img src={image || undefined} />
-      </Link>
-      <div className='info'>
-        <Link className='author' to={`/profile/${username}`}>
-          {username}
-        </Link>
-        <span className='date'>{format(createdAt, 'PP')}</span>
-      </div>
+      {/*<Link to={`/profile/${username}`}>*/}
+      {/*  <img src={image || undefined} />*/}
+      {/*</Link>*/}
+      {/*<div className='info'>*/}
+      {/*  <Link className='author' to={`/profile/${username}`}>*/}
+      {/*    {username}*/}
+      {/*  </Link>*/}
+      {/*  <span className='date'>{format(createdAt, 'PP')}</span>*/}
+      {/*</div>*/}
     </Fragment>
   );
 }
 
 function NonOwnerArticleMetaActions({
   article: {
-    slug,
-    favoritesCount,
-    favorited,
-    author: { username, following },
+    // slug,
+    // favoritesCount,
+    // favorited,
+    // author: { username, following },
   },
   submittingFavorite,
   submittingFollow,
@@ -166,34 +165,6 @@ function NonOwnerArticleMetaActions({
 }) {
   return (
     <Fragment>
-      <button
-        className={classObjectToClassName({
-          btn: true,
-          'btn-sm': true,
-          'btn-outline-secondary': !following,
-          'btn-secondary': following,
-        })}
-        disabled={submittingFollow}
-        onClick={() => onFollow(username, following)}
-      >
-        <i className='ion-plus-round'></i>
-        &nbsp; {(following ? 'Unfollow ' : 'Follow ') + username}
-      </button>
-      &nbsp;
-      <button
-        className={classObjectToClassName({
-          btn: true,
-          'btn-sm': true,
-          'btn-outline-primary': !favorited,
-          'btn-primary': favorited,
-        })}
-        disabled={submittingFavorite}
-        onClick={() => onFavorite(slug, favorited)}
-      >
-        <i className='ion-heart'></i>
-        &nbsp; {(favorited ? 'Unfavorite ' : 'Favorite ') + 'Article'}
-        <span className='counter'>({favoritesCount})</span>
-      </button>
     </Fragment>
   );
 }
@@ -223,7 +194,9 @@ async function onFavorite(slug: string, favorited: boolean) {
 }
 
 function OwnerArticleMetaActions({
-  article: { slug },
+  article: {
+    // slug
+  },
   deletingArticle,
 }: {
   article: Article;
@@ -231,19 +204,19 @@ function OwnerArticleMetaActions({
 }) {
   return (
     <Fragment>
-      <button className='btn btn-outline-secondary btn-sm' onClick={() => redirect(`editor/${slug}`)}>
-        <i className='ion-plus-round'></i>
-        &nbsp; Edit Article
-      </button>
+      {/*<button className='btn btn-outline-secondary btn-sm' onClick={() => redirect(`editor/${slug}`)}>*/}
+      {/*  <i className='ion-plus-round'></i>*/}
+      {/*  &nbsp; Edit Article*/}
+      {/*</button>*/}
       &nbsp;
-      <button
-        className='btn btn-outline-danger btn-sm'
-        disabled={deletingArticle}
-        onClick={() => onDeleteArticle(slug)}
-      >
-        <i className='ion-heart'></i>
-        &nbsp; Delete Article
-      </button>
+      {/*<button*/}
+      {/*  className='btn btn-outline-danger btn-sm'*/}
+      {/*  disabled={deletingArticle}*/}
+      {/*  onClick={() => onDeleteArticle(slug)}*/}
+      {/*>*/}
+      {/*  <i className='ion-heart'></i>*/}
+      {/*  &nbsp; Delete Article*/}
+      {/*</button>*/}
     </Fragment>
   );
 }
@@ -275,7 +248,7 @@ function CommentSection({
           some: (user) => (
             <CommentForm
               user={user}
-              slug={article.slug}
+              slug={""}
               submittingComment={submittingComment}
               commentBody={commentBody}
             />
@@ -287,7 +260,7 @@ function CommentSection({
           some: (comments) => (
             <Fragment>
               {comments.map((comment, index) => (
-                <ArticleComment key={comment.id} comment={comment} slug={article.slug} user={user} index={index} />
+                <ArticleComment key={comment.id} comment={comment} slug={""} user={user} index={index} />
               ))}
             </Fragment>
           ),

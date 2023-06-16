@@ -1,17 +1,20 @@
 import { format } from 'date-fns';
+import ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
 import { Article } from '../../types/article';
 
+
 export function ArticlePreview({
   article: {
-    createdAt,
-    favorited,
-    favoritesCount,
-    slug,
-    title,
-    description,
-    tagList,
-    author: { image, username },
+    link
+    // createdAt,
+    // favorited,
+    // favoritesCount,
+    // slug,
+    // title,
+    // description,
+    // tagList,
+    // author: { image, username },
   },
   isSubmitting,
   onFavoriteToggle,
@@ -20,33 +23,41 @@ export function ArticlePreview({
   isSubmitting: boolean;
   onFavoriteToggle?: () => void;
 }) {
+  console.log("article", link)
+
   return (
     <div className='article-preview'>
-      <div className='article-meta'>
-        <Link to={`/profile/${username}`} className='author'>
-          <img src={image || undefined} />
-        </Link>
-        <div className='info'>
-          <Link to={`/profile/${username}`} className='author'>
-            {username}
-          </Link>
-          <span className='date'>{format(createdAt, 'PP')}</span>
-        </div>
-        <button
-          className={`btn btn-sm pull-xs-right ${favorited ? 'btn-primary' : 'btn-outline-primary'}`}
-          aria-label='Toggle Favorite'
-          disabled={isSubmitting}
-          onClick={onFavoriteToggle}
-        >
-          <i className='ion-heart'></i> {favoritesCount}
-        </button>
-      </div>
-      <a href={`/#/article/${slug}`} className='preview-link'>
-        <h1>{title}</h1>
-        <p>{description}</p>
-        <span>Read more...</span>
-        <TagList tagList={tagList} />
-      </a>
+      {/*@ts-ignore*/}
+      <ReactPlayer
+        url={link}
+        height={250}
+        width={350}
+      />
+      {/*<div className='article-meta'>*/}
+      {/*  <Link to={`/profile/${username}`} className='author'>*/}
+      {/*    <img src={image || undefined} />*/}
+      {/*  </Link>*/}
+      {/*  <div className='info'>*/}
+      {/*    <Link to={`/profile/${username}`} className='author'>*/}
+      {/*      {username}*/}
+      {/*    </Link>*/}
+      {/*    <span className='date'>{format(createdAt, 'PP')}</span>*/}
+      {/*  </div>*/}
+      {/*  <button*/}
+      {/*    className={`btn btn-sm pull-xs-right ${favorited ? 'btn-primary' : 'btn-outline-primary'}`}*/}
+      {/*    aria-label='Toggle Favorite'*/}
+      {/*    disabled={isSubmitting}*/}
+      {/*    onClick={onFavoriteToggle}*/}
+      {/*  >*/}
+      {/*    <i className='ion-heart'></i> {favoritesCount}*/}
+      {/*  </button>*/}
+      {/*</div>*/}
+      {/*<a href={`/#/article/${slug}`} className='preview-link'>*/}
+      {/*  <h1>{title}</h1>*/}
+      {/*  <p>{description}</p>*/}
+      {/*  <span>Read more...</span>*/}
+      {/*  <TagList tagList={tagList} />*/}
+      {/*</a>*/}
     </div>
   );
 }
