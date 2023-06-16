@@ -1,12 +1,10 @@
-import { format } from 'date-fns';
 import ReactPlayer from 'react-player';
-import { Link } from 'react-router-dom';
 import { Article } from '../../types/article';
-
+import { useEffect, useState } from 'react';
 
 export function ArticlePreview({
   article: {
-    link
+    link,
     // createdAt,
     // favorited,
     // favoritesCount,
@@ -16,48 +14,26 @@ export function ArticlePreview({
     // tagList,
     // author: { image, username },
   },
-  isSubmitting,
-  onFavoriteToggle,
 }: {
   article: Article;
   isSubmitting: boolean;
   onFavoriteToggle?: () => void;
 }) {
-  console.log("article", link)
-
+  const [title, setTitle] = useState('');
+  useEffect(() => {
+    fetch(`https://noembed.com/embed?dataType=json&url=${link}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTitle(data.title);
+      });
+  });
   return (
     <div className='article-preview'>
-      {/*@ts-ignore*/}
-      <ReactPlayer
-        url={link}
-        height={250}
-        width={350}
-      />
-      {/*<div className='article-meta'>*/}
-      {/*  <Link to={`/profile/${username}`} className='author'>*/}
-      {/*    <img src={image || undefined} />*/}
-      {/*  </Link>*/}
-      {/*  <div className='info'>*/}
-      {/*    <Link to={`/profile/${username}`} className='author'>*/}
-      {/*      {username}*/}
-      {/*    </Link>*/}
-      {/*    <span className='date'>{format(createdAt, 'PP')}</span>*/}
-      {/*  </div>*/}
-      {/*  <button*/}
-      {/*    className={`btn btn-sm pull-xs-right ${favorited ? 'btn-primary' : 'btn-outline-primary'}`}*/}
-      {/*    aria-label='Toggle Favorite'*/}
-      {/*    disabled={isSubmitting}*/}
-      {/*    onClick={onFavoriteToggle}*/}
-      {/*  >*/}
-      {/*    <i className='ion-heart'></i> {favoritesCount}*/}
-      {/*  </button>*/}
-      {/*</div>*/}
-      {/*<a href={`/#/article/${slug}`} className='preview-link'>*/}
-      {/*  <h1>{title}</h1>*/}
-      {/*  <p>{description}</p>*/}
-      {/*  <span>Read more...</span>*/}
-      {/*  <TagList tagList={tagList} />*/}
-      {/*</a>*/}
+      <div style={{ display: 'flex', gap: 20 }}>
+        {/*@ts-ignore*/}
+        <ReactPlayer url={link} height={250} width={350} />
+        <div>{title}</div>
+      </div>
     </div>
   );
 }
