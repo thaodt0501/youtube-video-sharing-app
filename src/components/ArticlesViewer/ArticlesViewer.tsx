@@ -22,6 +22,7 @@ export function ArticlesViewer({
   onTabChange?: (tab: string) => void;
 }) {
   const { articles, articlesCount, currentPage } = useStore(({ articleViewer }) => articleViewer);
+  console.log(articles);
 
   return (
     <Fragment>
@@ -87,10 +88,10 @@ function ArticleList({ articles }: { articles: ArticleViewerState['articles'] })
         )}
         {articles.map(({ article, isSubmitting }, index) => (
           <ArticlePreview
-            key={article.slug}
+            key={index}
             article={article}
             isSubmitting={isSubmitting}
-            onFavoriteToggle={isSubmitting ? undefined : onFavoriteToggle(index, article)}
+            // onFavoriteToggle={isSubmitting ? undefined : onFavoriteToggle(index, article)}
           />
         ))}
       </Fragment>
@@ -98,15 +99,15 @@ function ArticleList({ articles }: { articles: ArticleViewerState['articles'] })
   });
 }
 
-function onFavoriteToggle(index: number, { slug, favorited }: Article) {
-  return async () => {
-    if (store.getState().app.user.isNone()) {
-      location.hash = '#/login';
-      return;
-    }
-    store.dispatch(startSubmittingFavorite(index));
-
-    const article = await (favorited ? unfavoriteArticle(slug) : favoriteArticle(slug));
-    store.dispatch(endSubmittingFavorite({ index, article }));
-  };
-}
+// function onFavoriteToggle(index: number, { slug, favorited }: Article) {
+//   return async () => {
+//     if (store.getState().app.user.isNone()) {
+//       location.hash = '#/login';
+//       return;
+//     }
+//     store.dispatch(startSubmittingFavorite(index));
+//
+//     const article = await (favorited ? unfavoriteArticle(slug) : favoriteArticle(slug));
+//     store.dispatch(endSubmittingFavorite({ index, article }));
+//   };
+// }

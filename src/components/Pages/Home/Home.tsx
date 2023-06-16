@@ -1,4 +1,3 @@
-import { Option } from '@hqoss/monads';
 import { getArticles, getFeed, getTags } from '../../../services/conduit';
 import { store } from '../../../state/store';
 import { useStoreWithInitializer } from '../../../state/storeHooks';
@@ -9,7 +8,7 @@ import { ContainerPage } from '../../ContainerPage/ContainerPage';
 import { changeTab, loadTags, startLoadingTags } from './Home.slice';
 
 export function Home() {
-  const { tags, selectedTab } = useStoreWithInitializer(({ home }) => home, load);
+  const { selectedTab } = useStoreWithInitializer(({ home }) => home, load);
 
   return (
     <div className='home-page'>
@@ -26,7 +25,7 @@ export function Home() {
         </div>
 
         <div className='col-md-3'>
-          <HomeSidebar tags={tags} />
+          {/*<HomeSidebar tags={tags} />*/}
         </div>
       </ContainerPage>
     </div>
@@ -92,24 +91,3 @@ async function getFeedOrGlobalArticles(filters: FeedFilters = {}) {
   );
 }
 
-function HomeSidebar({ tags }: { tags: Option<string[]> }) {
-  return (
-    <div className='sidebar'>
-      <p>Popular Tags</p>
-
-      {tags.match({
-        none: () => <span>Loading tags...</span>,
-        some: (tags) => (
-          <div className='tag-list'>
-            {' '}
-            {tags.map((tag) => (
-              <a key={tag} href='#' className='tag-pill tag-default' onClick={() => onTabChange(`# ${tag}`)}>
-                {tag}
-              </a>
-            ))}{' '}
-          </div>
-        ),
-      })}
-    </div>
-  );
-}

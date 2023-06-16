@@ -20,14 +20,16 @@ export function EditArticle() {
 async function _loadArticle(slug: string) {
   store.dispatch(initializeEditor());
   try {
-    const { title, description, body, tagList, author } = await getArticle(slug);
+    // const {
+    //   // title, description, body, tagList, author
+    // } = await getArticle(slug);
 
-    if (author.username !== store.getState().app.user.unwrap().username) {
-      location.hash = '#/';
-      return;
-    }
+    // if (author.username !== store.getState().app.user.unwrap().username) {
+    //   location.hash = '#/';
+    //   return;
+    // }
 
-    store.dispatch(loadArticle({ title, description, body, tagList }));
+    // store.dispatch(loadArticle({ title, description, body, tagList }));
   } catch {
     location.hash = '#/';
   }
@@ -42,8 +44,8 @@ function onSubmit(slug: string): (ev: React.FormEvent) => void {
 
     result.match({
       err: (errors) => store.dispatch(updateErrors(errors)),
-      ok: ({ slug }) => {
-        location.hash = `#/article/${slug}`;
+      ok: () => {
+        location.hash = `#/article/`;
       },
     });
   };
