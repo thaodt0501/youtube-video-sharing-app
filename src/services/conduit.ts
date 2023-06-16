@@ -67,10 +67,9 @@ export async function updateSettings(user: UserSettings): Promise<Result<User, G
 
 export async function signUp(user: UserForRegistration): Promise<Result<User, GenericErrors>> {
   try {
-    const { data } = await axios.post('users', { user });
-
+    const { data } = await axios.post('users/register', { user });
     return Ok(guard(object({ user: userDecoder }))(data).user);
-  } catch ({ response: { data } }) {
+  } catch (data) {
     return Err(guard(object({ errors: genericErrorsDecoder }))(data).errors);
   }
 }
