@@ -24,14 +24,14 @@ export function ArticleEditor({ onSubmit }: { onSubmit: (ev: React.FormEvent) =>
             onRemoveListItem={onRemoveTag}
             fields={[
               buildGenericFormField({ name: 'link', placeholder: 'Youtube URL' }),
-              buildGenericFormField({ name: 'title', placeholder: "Movie Title", lg: false }),
-              buildGenericFormField({
-                name: 'description',
-                placeholder: 'Description',
-                fieldType: 'textarea',
-                rows: 8,
-                lg: false,
-              }),
+              // buildGenericFormField({ name: 'title', placeholder: "Movie Title", lg: false }),
+              // buildGenericFormField({
+              //   name: 'description',
+              //   placeholder: 'Description',
+              //   fieldType: 'textarea',
+              //   rows: 8,
+              //   lg: false,
+              // }),
             ]}
           />
         </div>

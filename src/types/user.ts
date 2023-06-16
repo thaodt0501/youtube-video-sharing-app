@@ -35,6 +35,6 @@ export interface UserForRegistration {
 
 export function loadUserIntoApp(user: User) {
   localStorage.setItem('token', user.token);
-  axios.defaults.headers.Authorization = `Token ${user.token}`;
+  axios.defaults.headers.Authorization = `Bearer ${user.token}`;
   store.dispatch(loadUser(user));
 }

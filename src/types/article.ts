@@ -2,9 +2,10 @@ import { array, boolean, Decoder, iso8601, number, object, string } from 'decode
 import { Profile, profileDecoder } from './profile';
 
 export interface Article {
-  link: string,
-  _id: string,
-  __v: number,
+  link: string;
+  _id: string;
+  __v: number;
+  sharedBy: string;
   // slug: string ;
   // title: string;
   // description: string;
@@ -21,6 +22,7 @@ export const articleDecoder: Decoder<Article> = object({
   link: string,
   _id: string,
   __v: number,
+  sharedBy: string,
   // slug: string,
   // title: string,
   // description: string,

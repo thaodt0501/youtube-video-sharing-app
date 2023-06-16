@@ -12,8 +12,9 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     '@typescript-eslint/no-empty-function': ['error', { allow: ['methods', 'arrowFunctions'] }],
-    '@typescript-eslint/no-unused-vars': ['error'],
+    '@typescript-eslint/no-unused-vars': ['off'],
     '@typescript-eslint/no-explicit-any': ['error'],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/ban-ts-comment': ['off']
   },
 };

@@ -23,12 +23,10 @@ async function _loadArticle(slug: string) {
     // const {
     //   // title, description, body, tagList, author
     // } = await getArticle(slug);
-
     // if (author.username !== store.getState().app.user.unwrap().username) {
     //   location.hash = '#/';
     //   return;
     // }
-
     // store.dispatch(loadArticle({ title, description, body, tagList }));
   } catch {
     location.hash = '#/';

@@ -24,11 +24,11 @@ export function ArticlesViewer({
   const { articles, articlesCount, currentPage } = useStore(({ articleViewer }) => articleViewer);
 
   return (
-    <Fragment>
+    <>
       <ArticlesTabSet {...{ tabs, selectedTab, toggleClassName, onTabChange }} />
       <ArticleList articles={articles} />
       <Pagination currentPage={currentPage} count={articlesCount} itemsPerPage={10} onPageChange={onPageChange} />
-    </Fragment>
+    </>
   );
 }
 
@@ -79,7 +79,7 @@ function ArticleList({ articles }: { articles: ArticleViewerState['articles'] })
       </div>
     ),
     some: (articles) => (
-      <Fragment>
+      <>
         {articles.length === 0 && (
           <div className='article-preview' key={1}>
             No articles are here... yet.
@@ -87,13 +87,13 @@ function ArticleList({ articles }: { articles: ArticleViewerState['articles'] })
         )}
         {articles.map(({ article, isSubmitting }, index) => (
           <ArticlePreview
-            key={index}
+            key={article._id}
             article={article}
             isSubmitting={isSubmitting}
             // onFavoriteToggle={isSubmitting ? undefined : onFavoriteToggle(index, article)}
           />
         ))}
-      </Fragment>
+      </>
     ),
   });
 }

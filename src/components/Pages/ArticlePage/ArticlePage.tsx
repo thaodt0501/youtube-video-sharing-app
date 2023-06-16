@@ -18,9 +18,7 @@ import { useStore } from '../../../state/storeHooks';
 import { Article } from '../../../types/article';
 import { Comment } from '../../../types/comment';
 import { redirect } from '../../../types/location';
-import { classObjectToClassName } from '../../../types/style';
 import { User } from '../../../types/user';
-import { TagList } from '../../ArticlePreview/ArticlePreview';
 import {
   CommentSectionState,
   initializeArticlePage,
@@ -57,15 +55,11 @@ export function ArticlePage() {
         <ArticlePageBanner {...{ article, metaSection, user }} />
 
         <div className='container page'>
-          <div className='row article-content'>
-            {/*<div className='col-md-12'>{article.body}</div>*/}
-          </div>
+          <div className='row article-content'>{/*<div className='col-md-12'>{article.body}</div>*/}</div>
 
           <hr />
 
-          <div className='article-actions'>
-            <ArticleMeta {...{ article, metaSection, user }} />
-          </div>
+          <div className='article-actions'></div>
 
           <CommentSection {...{ user, commentSection, article }} />
         </div>
@@ -91,81 +85,8 @@ async function onLoad(slug: string) {
 function ArticlePageBanner(props: { article: Article; metaSection: MetaSectionState; user: Option<User> }) {
   return (
     <div className='banner'>
-      <div className='container'>
-        {/*<h1>{props.article.title}</h1>*/}
-
-        <ArticleMeta {...props} />
-      </div>
+      <div className='container'></div>
     </div>
-  );
-}
-
-function ArticleMeta({
-  article,
-  metaSection: { submittingFavorite, submittingFollow, deletingArticle },
-  user,
-}: {
-  article: Article;
-  metaSection: MetaSectionState;
-  user: Option<User>;
-}) {
-  return (
-    <div className='article-meta'>
-      <ArticleAuthorInfo article={article} />
-
-      {/*{user.isSome() && user.unwrap().username === article.author.username ? (*/}
-      {/*  <OwnerArticleMetaActions article={article} deletingArticle={deletingArticle} />*/}
-      {/*) : (*/}
-      {/*  <NonOwnerArticleMetaActions*/}
-      {/*    article={article}*/}
-      {/*    submittingFavorite={submittingFavorite}*/}
-      {/*    submittingFollow={submittingFollow}*/}
-      {/*  />*/}
-      {/*)}*/}
-    </div>
-  );
-}
-
-function ArticleAuthorInfo({
-  // article: {
-  //   author: { username, image },
-  //   createdAt,
-  // },
-}: {
-  article: Article;
-}) {
-  return (
-    <Fragment>
-      {/*<Link to={`/profile/${username}`}>*/}
-      {/*  <img src={image || undefined} />*/}
-      {/*</Link>*/}
-      {/*<div className='info'>*/}
-      {/*  <Link className='author' to={`/profile/${username}`}>*/}
-      {/*    {username}*/}
-      {/*  </Link>*/}
-      {/*  <span className='date'>{format(createdAt, 'PP')}</span>*/}
-      {/*</div>*/}
-    </Fragment>
-  );
-}
-
-function NonOwnerArticleMetaActions({
-  article: {
-    // slug,
-    // favoritesCount,
-    // favorited,
-    // author: { username, following },
-  },
-  submittingFavorite,
-  submittingFollow,
-}: {
-  article: Article;
-  submittingFavorite: boolean;
-  submittingFollow: boolean;
-}) {
-  return (
-    <Fragment>
-    </Fragment>
   );
 }
 
@@ -193,34 +114,6 @@ async function onFavorite(slug: string, favorited: boolean) {
   store.dispatch(loadArticle(article));
 }
 
-function OwnerArticleMetaActions({
-  article: {
-    // slug
-  },
-  deletingArticle,
-}: {
-  article: Article;
-  deletingArticle: boolean;
-}) {
-  return (
-    <Fragment>
-      {/*<button className='btn btn-outline-secondary btn-sm' onClick={() => redirect(`editor/${slug}`)}>*/}
-      {/*  <i className='ion-plus-round'></i>*/}
-      {/*  &nbsp; Edit Article*/}
-      {/*</button>*/}
-      &nbsp;
-      {/*<button*/}
-      {/*  className='btn btn-outline-danger btn-sm'*/}
-      {/*  disabled={deletingArticle}*/}
-      {/*  onClick={() => onDeleteArticle(slug)}*/}
-      {/*>*/}
-      {/*  <i className='ion-heart'></i>*/}
-      {/*  &nbsp; Delete Article*/}
-      {/*</button>*/}
-    </Fragment>
-  );
-}
-
 async function onDeleteArticle(slug: string) {
   store.dispatch(startDeletingArticle());
   await deleteArticle(slug);
@@ -246,23 +139,18 @@ function CommentSection({
             </p>
           ),
           some: (user) => (
-            <CommentForm
-              user={user}
-              slug={""}
-              submittingComment={submittingComment}
-              commentBody={commentBody}
-            />
+            <CommentForm user={user} slug={''} submittingComment={submittingComment} commentBody={commentBody} />
           ),
         })}
 
         {comments.match({
           none: () => <div>Loading comments...</div>,
           some: (comments) => (
-            <Fragment>
+            <>
               {comments.map((comment, index) => (
-                <ArticleComment key={comment.id} comment={comment} slug={""} user={user} index={index} />
+                <ArticleComment key={comment.id} comment={comment} slug={''} user={user} index={index} />
               ))}
-            </Fragment>
+            </>
           ),
         })}
       </div>

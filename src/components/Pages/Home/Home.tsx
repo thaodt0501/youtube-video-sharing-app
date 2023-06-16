@@ -6,32 +6,32 @@ import { ArticlesViewer } from '../../ArticlesViewer/ArticlesViewer';
 import { changePage, loadArticles, startLoadingArticles } from '../../ArticlesViewer/ArticlesViewer.slice';
 import { ContainerPage } from '../../ContainerPage/ContainerPage';
 import { changeTab, loadTags, startLoadingTags } from './Home.slice';
-import socketIOClient from 'socket.io-client';
+import { io } from 'socket.io-client';
 import { useEffect } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
+import React from 'react';
+import { async } from 'q';
+const { cloneElement } = React;
 
-
-const ENDPOINT = 'http://localhost:8081';
+const ENDPOINT = 'http://localhost:8080';
 
 export function Home() {
   const { selectedTab } = useStoreWithInitializer(({ home }) => home, load);
 
   // @ts-ignore
   useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
-    console.log(socket);
+    const socket = io(ENDPOINT);
 
-    socket.on('connect', function() {
+    socket.on('connect', function () {
       console.log('Connected');
-
-      socket.emit('events', { test: 'test' });
-      socket.emit('identity', 0, (response: any) =>
-        console.log('Identity:', response),
-      );
-    });
-    // Listen for 'videoCreated' event
-    socket.on('videoCreated', (video) => {
-      console.log('New video created: ', video);
-      // Here you can add the logic to handle the new video, e.g. update state or show notification
+      // Listen for 'videoCreated' event
+      socket.on('videoCreated', async (video) => {
+        console.log('New video created: ', video);
+        toast(`${video.sharedBy} shared a new video`);
+        const multipleArticles = await getFeedOrGlobalArticles();
+        store.dispatch(loadArticles(multipleArticles));
+      });
     });
 
     // Clean up the effect
@@ -41,8 +41,9 @@ export function Home() {
   return (
     <div className='home-page'>
       {renderBanner()}
+      <ToastContainer />
       <ContainerPage>
-        <div className='col-md-9'>
+        <div className='col-md-12'>
           <ArticlesViewer
             toggleClassName='feed-toggle'
             selectedTab={selectedTab}
@@ -51,8 +52,6 @@ export function Home() {
             onTabChange={onTabChange}
           />
         </div>
-
-        <div className='col-md-3'>{/*<HomeSidebar tags={tags} />*/}</div>
       </ContainerPage>
     </div>
   );
@@ -68,9 +67,6 @@ async function load() {
 
   const multipleArticles = await getFeedOrGlobalArticles();
   store.dispatch(loadArticles(multipleArticles));
-
-  const tagsResult = await getTags();
-  store.dispatch(loadTags(tagsResult.tags));
 }
 
 function renderBanner() {
