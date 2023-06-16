@@ -25,7 +25,7 @@ export async function getArticles(filters: ArticlesFilters = {}): Promise<Multip
     offset: 0,
     ...filters,
   };
-  return guard(multipleArticlesDecoder)((await axios.get(`articles?${objectToQueryString(finalFilters)}`)).data);
+  return guard(multipleArticlesDecoder)((await axios.get(`video?${objectToQueryString(finalFilters)}`)).data);
 }
 
 export async function getTags(): Promise<{ tags: string[] }> {
@@ -43,7 +43,7 @@ export async function login(email: string, password: string): Promise<Result<Use
 }
 
 export async function getUser(): Promise<User> {
-  const { data } = await axios.get('user');
+  const { data } = await axios.get('users/profile');
   return guard(object({ user: userDecoder }))(data).user;
 }
 
