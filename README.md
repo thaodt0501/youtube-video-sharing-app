@@ -1,14 +1,22 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a85b9a22-32b1-479a-a00a-26277493613b/deploy-status)](https://app.netlify.com/sites/react-ts-redux-realworld-example-app/deploys)
-![Pipeline](https://github.com/angelguzmaning/ts-redux-react-realworld-example-app/actions/workflows/pipeline.yml/badge.svg)
+# Project Name: YouTube Video Sharing App
 
-> ### React codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
+# Purpose: The primary goal of this project is to provide a platform for users to share their favorite YouTube videos by simply inputting the YouTube URL. It allows individuals to share their interests and discover new content, encouraging community interaction and content discovery.
 
-### [Demo](https://react-ts-redux-realworld-example-app.netlify.app/)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
+# Key Features:
 
-This codebase was created to demonstrate a fully fledged fullstack application built with React, Typescript, and Redux Toolkit including CRUD operations, authentication, routing, pagination, and more.
+* User Registration and Login: Users can create their own accounts by registering with their email addresses and secure passwords. This creates a personalized space where they can manage their video shares and interactions.
 
-For more information on how this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
+* Video Sharing: Users can share YouTube videos on this platform by providing the video's URL. This could include a personal YouTube video or a favorite video from another YouTube creator.
 
+* Browsing User's Own Videos: Users have the ability to view all the videos they have shared in one place, similar to a personal video playlist. This is a great way for users to revisit their shared content whenever they want.
+
+* Browsing Videos Shared by Other Users: A core feature of the app is the ability to browse and watch videos shared by other users. This encourages community interaction and allows users to discover new content they might not have found on their own. This could also include features like user likes, comments, and a trending section with popular shared videos.
+
+* Notification: Users will receive notifications whenever a video is shared, ensuring they don't miss out on any new content.
+
+* Profile Management: Users can manage their profiles, change their personal details, and customize their settings.
+
+The platform's goal is to build a community around shared interests in YouTube content, encouraging discovery and discussion. It's an excellent project for learning and demonstrating skills in full-stack web development, with an emphasis on user authentication, data management, video sharing, and real-time updates.
 
 # How it works
 The root of the application is the `src/components/App` component. The App component uses react-router's HashRouter to display the different pages. Each page is represented by a [function component](https://reactjs.org/docs/components-and-props.html). 
@@ -40,10 +48,33 @@ This project uses prettier and eslint to enforce a consistent code syntax.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-## Available Scripts
+## Installation & Configuration
+
+Please visit github and clone both webapp and backend repository
+
+* Webapp repository: https://github.com/thaodt0501/youtube-video-sharing-app
+
+* Backend repository: https://github.com/thaodt0501/youtube-video-sharing-api
+
+## Setting up for Backend
 In the project directory, you can run:
 
-### `npm start`
+### `docker-compose up -d`
+Setup Mongodb database
+
+### `yarn`
+Install dependencies
+
+### `yarn start`
+Running server development mode (http://localhost:8080)
+
+## Available Scripts for Webapp
+In the project directory, you can run:
+
+### `yarn`
+Install dependencies
+
+### `yarn start`
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -51,11 +82,11 @@ The page will reload if you make edits.<br />
 
 Note: This project will run the app even if linting fails.
 
-### `npm test`
+### `yarn test`
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `yarn run build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.

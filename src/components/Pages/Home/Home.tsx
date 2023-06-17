@@ -12,9 +12,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import React from 'react';
 import { async } from 'q';
+import settings from '../../../config/settings';
 const { cloneElement } = React;
 
-const ENDPOINT = 'http://localhost:8080';
+const ENDPOINT = settings.baseApiUrl;
 
 export function Home() {
   const { selectedTab } = useStoreWithInitializer(({ home }) => home, load);

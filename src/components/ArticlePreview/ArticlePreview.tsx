@@ -2,6 +2,8 @@ import ReactPlayer from 'react-player';
 import { Article } from '../../types/article';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import settings from '../../config/settings';
+
 
 export function ArticlePreview({
   article: { link, sharedBy },
@@ -10,43 +12,41 @@ export function ArticlePreview({
   isSubmitting: boolean;
   onFavoriteToggle?: () => void;
 }) {
-  const [videoData, setVideoData] = useState(null);
-  const [title, setTitle] = useState('');
-  const apiKey = 'AIzaSyC5Rz6roWoIWONhCj7xr4aLBBunfTtBeJo'; // replace with your YouTube API Key
-  const videoId = '9VnhkpcEs74'; // replace with your YouTube video id
-  const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${apiKey}&part=snippet,contentDetails,statistics,status`;
+  const [videoData, setVideoData] = useState<any>(null);
+  const apiKey = settings.googleApiKey;
 
   useEffect(() => {
+    const videoId = getVideoId(link);
+    const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${apiKey}&part=snippet,contentDetails,statistics,status`;
     axios
       .get(url)
       .then((response) => {
         if (response.data.items.length > 0) {
           console.log(`response`, response);
           setVideoData(response.data.items[0].snippet);
-        } else {
-          console.log('No data found for the given video ID.');
         }
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [link]);
 
-  useEffect(() => {
-    fetch(`https://noembed.com/embed?dataType=json&url=${link}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setTitle(data.title);
-      });
-  }, []);
   return (
     <div className='article-preview'>
-      <div style={{ display: 'flex', gap: 20 }}>
+      <div style={{ display: 'flex', gap: 20, height: 250, overflow: "hidden" }}>
         {/*@ts-ignore*/}
         <ReactPlayer url={link} height={250} width={350} />
         <div style={{ width: 'calc(100% - 350px)' }}>
-          <p style={{ color: 'red' }}>{title}</p>
+          <p style={{ color: 'red' }}>{videoData?.title}</p>
           <p>Shared by: {sharedBy}</p>
+
+          <p>{videoData?.description}</p>
         </div>
       </div>
     </div>
   );
+}
+
+function getVideoId(url: string = "") {
+  const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[7].length == 11) ? match[7] : false;
 }

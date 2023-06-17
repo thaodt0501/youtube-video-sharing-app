@@ -7,4 +7,4 @@ services:
     restart: unless-stopped
     container_name: usa-webapp
     ports:
-      - '80:80'
+      - '3002:80'
