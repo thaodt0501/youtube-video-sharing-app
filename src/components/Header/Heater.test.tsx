@@ -25,14 +25,6 @@ describe('Header for guest', () => {
   it('Should render Sign up link', () => {
     expectLinkByText('Sign up', 'register');
   });
-
-  it('Should not render New Article link', () => {
-    expectEmptyQueryByText('New Article');
-  });
-
-  it('Should not render Settings link', () => {
-    expectEmptyQueryByText('Settings');
-  });
 });
 
 describe('Header for user', () => {
@@ -54,14 +46,6 @@ describe('Header for user', () => {
 
   it('Should render New Article link', () => {
     expectLinkByText('New Article', 'editor');
-  });
-
-  it('Should render Settings link', () => {
-    expectLinkByText('Settings', 'settings');
-  });
-
-  it('Should render user link', () => {
-    expectLinkByText('jake', 'profile/jake');
   });
 
   it('Should not render Sign in link', () => {

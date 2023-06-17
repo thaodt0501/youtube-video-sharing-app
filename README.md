@@ -95,3 +95,8 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+# Usage
+To use the application, you need to register and log in first. Once you are logged in, you can share YouTube videos by clicking on the “Share” button and pasting the video link. You can also view a list of shared videos by clicking on the “View Videos” button.  
+If you are logged in and another user shares a new video, you will receive a real-time notification about the newly shared video. This notification can be displayed as a pop-up in the application, and it should contain the video title and the name of the user who shared it.
+ 

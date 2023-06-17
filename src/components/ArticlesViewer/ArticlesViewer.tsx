@@ -1,10 +1,7 @@
-import { Fragment } from 'react';
-import { store } from '../../state/store';
 import { useStore } from '../../state/storeHooks';
 import { classObjectToClassName } from '../../types/style';
 import { ArticlePreview } from '../ArticlePreview/ArticlePreview';
-import { Pagination } from '../Pagination/Pagination';
-import { ArticleViewerState, endSubmittingFavorite, startSubmittingFavorite } from './ArticlesViewer.slice';
+import { ArticleViewerState } from './ArticlesViewer.slice';
 
 export function ArticlesViewer({
   toggleClassName,
@@ -25,7 +22,6 @@ export function ArticlesViewer({
     <>
       <ArticlesTabSet {...{ tabs, selectedTab, toggleClassName, onTabChange }} />
       <ArticleList articles={articles} />
-      <Pagination currentPage={currentPage} count={articlesCount} itemsPerPage={10} onPageChange={onPageChange} />
     </>
   );
 }

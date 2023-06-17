@@ -121,6 +121,6 @@ it('Should redirect to home if login is successful and setup auth', async () => 
 
   expect(location.hash).toMatch('#/');
   expect(localStorage.getItem('token')).toMatch('jwt.token.here');
-  expect(axios.defaults.headers.Authorization).toMatch('Token jwt.token.here');
+  expect(axios.defaults.headers.Authorization).toMatch('Bearer jwt.token.here');
   expect(store.getState().app.user.isSome()).toBe(true);
 });

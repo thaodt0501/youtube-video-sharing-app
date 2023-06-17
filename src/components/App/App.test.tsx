@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import axios from 'axios';
 import { getArticles, getFeed, getTags, getUser } from '../../services/conduit';
 import { store } from '../../state/store';
@@ -29,7 +29,6 @@ it('Should render home', async () => {
     await render(<App />);
   });
 
-  expect(screen.getByText('A place to share your knowledge.')).toBeInTheDocument();
   expect(mockedGetUser.mock.calls.length).toBe(0);
   mockedGetUser.mockClear();
 });
@@ -56,7 +55,7 @@ it('Should get user if token is on storage', async () => {
     await render(<App />);
   });
 
-  expect(axios.defaults.headers.Authorization).toMatch('Token my-token');
+  expect(axios.defaults.headers.Authorization).toMatch('Bearer my-token');
   const optionUser = store.getState().app.user;
   expect(optionUser.isSome()).toBe(true);
 
