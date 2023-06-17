@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    image: usa-webapp
+    restart: unless-stopped
+    container_name: usa-webapp
+    ports:
+      - '3002:80'
