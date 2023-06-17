@@ -12,8 +12,8 @@ import { Login } from '../Pages/Login/Login';
 import { NewArticle } from '../Pages/NewArticle/NewArticle';
 import { Register } from '../Pages/Register/Register';
 import { endLoad, loadUser } from './App.slice';
-import { ProfilePage } from '../Pages/ProfilePage/ProfilePage';
 import { ArticlePage } from '../Pages/ArticlePage/ArticlePage';
+import { Settings } from '../Pages/Settings/Settings';
 
 export function App() {
   const { loading, user } = useStoreWithInitializer(({ app }) => app, load);
@@ -44,6 +44,9 @@ export function App() {
             <Route exact path='/'>
               <Home />
             </Route>
+            <UserOnlyRoute exact path='/settings' userIsLogged={userIsLogged}>
+              <Settings />
+            </UserOnlyRoute>
             <Route path='*'>
               <Redirect to='/' />
             </Route>
