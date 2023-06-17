@@ -123,31 +123,30 @@ it('Should load feed articles if user is logged in', async () => {
 
   expect(store.getState().home.selectedTab).toMatch('Your Feed');
 });
- 
- 
- 
 
-  await act(async () => {
-    await render(
-      <MemoryRouter>
-        <Home />
-      </MemoryRouter>
-    );
-  });
 
-  mockedGetArticles.mockResolvedValueOnce({
-    articles: [{ ...defaultArticle, title: 'After change' }],
-    articlesCount: 100,
-  });
 
-  await act(async () => {
-    fireEvent.click(screen.getByLabelText(/Go to page number 5/));
-  });
 
-  expect(store.getState().articleViewer.currentPage).toBe(5);
-  expect(screen.getByText('After change')).toBeInTheDocument();
-  expect(mockedGetArticles.mock.calls[1][0]).toHaveProperty('offset', 40);
+await act(async () => {
+  await render(
+    <MemoryRouter>
+      <Home />
+    </MemoryRouter>
+  );
 });
+
+mockedGetArticles.mockResolvedValueOnce({
+  articles: [{ ...defaultArticle, title: 'After change' }],
+  articlesCount: 100,
+});
+
+await act(async () => {
+  fireEvent.click(screen.getByLabelText(/Go to page number 5/));
+});
+
+expect(store.getState().articleViewer.currentPage).toBe(5);
+expect(screen.getByText('After change')).toBeInTheDocument();
+expect(mockedGetArticles.mock.calls[1][0]).toHaveProperty('offset', 40);
 
 it('Should change tabs', async () => {
   mockedGetFeed.mockResolvedValueOnce({
