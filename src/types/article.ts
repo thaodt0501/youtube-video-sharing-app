@@ -6,16 +6,6 @@ export interface Article {
   _id: string;
   __v: number;
   sharedBy: string;
-  // slug: string ;
-  // title: string;
-  // description: string;
-  // body: string;
-  // tagList: string[];
-  // createdAt: Date;
-  // updatedAt: Date;
-  // favorited: boolean;
-  // favoritesCount: number;
-  // author: Profile;
 }
 
 export const articleDecoder: Decoder<Article> = object({
@@ -23,16 +13,6 @@ export const articleDecoder: Decoder<Article> = object({
   _id: string,
   __v: number,
   sharedBy: string,
-  // slug: string,
-  // title: string,
-  // description: string,
-  // body: string,
-  // tagList: array(string),
-  // createdAt: iso8601,
-  // updatedAt: iso8601,
-  // favorited: boolean,
-  // favoritesCount: number,
-  // author: profileDecoder,
 });
 
 export interface MultipleArticles {
@@ -60,7 +40,4 @@ export interface ArticlesFilters {
   offset?: number;
 }
 
-export interface FeedFilters {
-  limit?: number;
-  offset?: number;
-}
+ 
