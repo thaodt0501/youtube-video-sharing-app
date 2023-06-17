@@ -15,7 +15,7 @@ import { async } from 'q';
 import settings from '../../../config/settings';
 const { cloneElement } = React;
 
-const ENDPOINT = settings.baseApiUrl;
+const ENDPOINT = settings.baseSocketUrl;
 
 export function Home() {
   const { selectedTab } = useStoreWithInitializer(({ home }) => home, load);
@@ -23,7 +23,6 @@ export function Home() {
   // @ts-ignore
   useEffect(() => {
     const socket = io(ENDPOINT);
-
     socket.on('connect', function () {
       console.log('Connected');
       // Listen for 'videoCreated' event

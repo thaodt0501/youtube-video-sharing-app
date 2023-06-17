@@ -18,12 +18,14 @@ export function ArticlePreview({
   useEffect(() => {
     const videoId = getVideoId(link);
     const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${apiKey}&part=snippet,contentDetails,statistics,status`;
-    axios
-      .get(url)
+    fetch(url)
+      .then(response => {
+        if (!response.ok) { throw new Error(response.statusText); }
+        return response.json(); // this will be a promise
+      })
       .then((response) => {
-        if (response.data.items.length > 0) {
-          console.log(`response`, response);
-          setVideoData(response.data.items[0].snippet);
+        if (response.items.length > 0) {
+          setVideoData(response.items[0].snippet);
         }
       })
       .catch((err) => console.log(err));
