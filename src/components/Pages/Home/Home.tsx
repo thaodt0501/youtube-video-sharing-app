@@ -14,7 +14,7 @@ import { async } from 'q';
 import settings from '../../../config/settings';
 const { cloneElement } = React;
 
-const ENDPOINT = settings.baseApiUrl;
+const ENDPOINT = settings.baseSocketUrl;
 
 export function Home() {
   const { selectedTab } = useStoreWithInitializer(({ home }) => home, load);
