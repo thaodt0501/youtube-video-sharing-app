@@ -264,7 +264,6 @@ it('Should get user on successful signup', async () => {
   });
 });
 
- 
 it('Should get article on successful article creation', async () => {
   mockedAxios.put.mockResolvedValueOnce({
     data: {
@@ -291,4 +290,4 @@ it('Should get profile', async () => {
 
   const result = await getProfile('1');
   expect(result.username === 'the one').toBeTruthy();
- 
+});

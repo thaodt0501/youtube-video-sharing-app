@@ -96,7 +96,22 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+# Docker Deployment
+
+To deploy on a server, you need to copy your project files to the server (you could use SCP, rsync, or similar), install Docker and Docker Compose on the server, and then run docker-compose up on the server
+
+## Webapp
+
+In the webapp project directory, you can run: `docker-compose up` to run webapp on port 3002
+
+
 # Usage
 To use the application, you need to register and log in first. Once you are logged in, you can share YouTube videos by clicking on the “Share” button and pasting the video link. You can also view a list of shared videos by clicking on the “View Videos” button.  
 If you are logged in and another user shares a new video, you will receive a real-time notification about the newly shared video. This notification can be displayed as a pop-up in the application, and it should contain the video title and the name of the user who shared it.
- 
+
+# Troubeshooting
+Here are a few common issues that might occur when setting up the application, as well as some possible solutions.
+
+- "Docker build" fails due to dependency installation issues
+
+- The application fails to connect to the database

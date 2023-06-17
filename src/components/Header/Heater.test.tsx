@@ -44,8 +44,8 @@ describe('Header for user', () => {
 
   beforeEach(() => render(<Header />));
 
-  it('Should render New Article link', () => {
-    expectLinkByText('New Article', 'editor');
+  it('Should render Share a movie link', () => {
+    expectLinkByText('Share a movie', 'editor');
   });
 
   it('Should not render Sign in link', () => {

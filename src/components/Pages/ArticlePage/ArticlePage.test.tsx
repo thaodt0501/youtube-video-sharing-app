@@ -1,9 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
-import { 
-  getArticle,
-  getArticleComments, 
-} from '../../../services/conduit';
+import { getArticle, getArticleComments } from '../../../services/conduit';
 import { store } from '../../../state/store';
 import { Comment } from '../../../types/comment';
 import { redirect } from '../../../types/location';
@@ -13,7 +10,7 @@ import { ArticlePage } from './ArticlePage';
 jest.mock('../../../services/conduit.ts');
 
 const mockedGetArticle = getArticle as jest.Mock<ReturnType<typeof getArticle>>;
-const mockedGetArticleComments = getArticleComments as jest.Mock<ReturnType<typeof getArticleComments>>; 
+const mockedGetArticleComments = getArticleComments as jest.Mock<ReturnType<typeof getArticleComments>>;
 
 const defaultArticle = {
   author: {
@@ -73,10 +70,7 @@ describe('For guest', () => {
 
     expect(location.hash === '#/').toBeTruthy();
   });
-
-  
-
- 
+});
 
 describe('For non article owner User', () => {
   beforeEach(async () => {
@@ -92,4 +86,4 @@ describe('For non article owner User', () => {
       );
     });
   });
- 
+});

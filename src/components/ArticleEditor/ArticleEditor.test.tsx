@@ -12,7 +12,7 @@ beforeEach(() => {
 
 it('Should update article text fields', async () => {
   await act(async () => {
-    fireEvent.change(screen.getByPlaceholderText('Article Title'), { target: { value: 'testTitle' } });
+    fireEvent.change(screen.getByPlaceholderText('Youtube URL'), { target: { value: 'testTitle' } });
 
     store.dispatch(updateField({ name: 'tagList', value: 'df' }));
   });
