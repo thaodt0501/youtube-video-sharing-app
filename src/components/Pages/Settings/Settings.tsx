@@ -7,7 +7,7 @@ import { UserSettings } from '../../../types/user';
 import { buildGenericFormField } from '../../../types/genericFormField';
 import { loadUser, logout } from '../../App/App.slice';
 import { GenericForm } from '../../GenericForm/GenericForm';
-import { SettingsState, startUpdate, updateErrors, updateField } from './Settings.slice';
+import { SettingsState, startUpdate, updateErrors, updateField } from './Setting.slice';
 import { ContainerPage } from '../../ContainerPage/ContainerPage';
 
 export interface SettingsField {

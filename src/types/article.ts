@@ -39,5 +39,3 @@ export interface ArticlesFilters {
   limit?: number;
   offset?: number;
 }
-
- 

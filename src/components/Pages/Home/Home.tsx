@@ -1,7 +1,6 @@
 import { getArticles, getFeed, getTags } from '../../../services/conduit';
 import { store } from '../../../state/store';
 import { useStoreWithInitializer } from '../../../state/storeHooks';
-import { FeedFilters } from '../../../types/article';
 import { ArticlesViewer } from '../../ArticlesViewer/ArticlesViewer';
 import { changePage, loadArticles, startLoadingArticles } from '../../ArticlesViewer/ArticlesViewer.slice';
 import { ContainerPage } from '../../ContainerPage/ContainerPage';
@@ -15,7 +14,7 @@ import { async } from 'q';
 import settings from '../../../config/settings';
 const { cloneElement } = React;
 
-const ENDPOINT = settings.baseSocketUrl;
+const ENDPOINT = settings.baseApiUrl;
 
 export function Home() {
   const { selectedTab } = useStoreWithInitializer(({ home }) => home, load);
@@ -23,6 +22,7 @@ export function Home() {
   // @ts-ignore
   useEffect(() => {
     const socket = io(ENDPOINT);
+
     socket.on('connect', function () {
       console.log('Connected');
       // Listen for 'videoCreated' event
@@ -101,7 +101,7 @@ async function onTabChange(tab: string) {
   store.dispatch(loadArticles(multipleArticles));
 }
 
-async function getFeedOrGlobalArticles(filters: FeedFilters = {}) {
+async function getFeedOrGlobalArticles(filters = {}) {
   const { selectedTab } = store.getState().home;
   const finalFilters = {
     ...filters,

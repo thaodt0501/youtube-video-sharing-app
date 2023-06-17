@@ -124,9 +124,6 @@ it('Should load feed articles if user is logged in', async () => {
   expect(store.getState().home.selectedTab).toMatch('Your Feed');
 });
 
-
-
-
 await act(async () => {
   await render(
     <MemoryRouter>

@@ -7,7 +7,6 @@ import {
   articleDecoder,
   ArticleForEditor,
   ArticlesFilters,
-  FeedFilters,
   MultipleArticles,
   multipleArticlesDecoder,
 } from '../types/article';
@@ -113,7 +112,7 @@ export async function unfollowUser(username: string): Promise<Profile> {
   return guard(object({ profile: profileDecoder }))(data).profile;
 }
 
-export async function getFeed(filters: FeedFilters = {}): Promise<MultipleArticles> {
+export async function getFeed(filters = {}): Promise<MultipleArticles> {
   const finalFilters: ArticlesFilters = {
     limit: 10,
     offset: 0,
