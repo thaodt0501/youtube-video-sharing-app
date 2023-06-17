@@ -1,0 +1,34 @@
+.video-preview {
+  flex-direction: row;
+  display: flex;
+  gap: 20;
+  height: 250px;
+  overflow: hidden;
+}
+
+.video-info {
+  width: calc(100% - 350px);
+  padding-left: 20px;
+}
+
+.video-title {
+  color: red;
+}
+
+@media screen and (max-width: 425px) {
+  .video-preview {
+    flex-direction: column;
+    height: 348px;
+    padding: 0 15px;
+  }
+
+  .video-preview > div {
+    width: 100% !important;
+  }
+
+  .video-info {
+    width: 100%;
+    padding: 10px 0;
+    width: 350px;
+  }
+}

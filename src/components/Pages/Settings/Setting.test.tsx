@@ -1,6 +1,6 @@
 import { store } from '../../../state/store';
 import { Settings } from './Settings';
-import { initializeSettings, startUpdate, updateErrors } from './Settings.slice';
+import { initializeSettings, startUpdate, updateErrors } from './Setting.slice';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { updateSettings } from '../../../services/conduit';
 import { Err, Ok } from '@hqoss/monads';

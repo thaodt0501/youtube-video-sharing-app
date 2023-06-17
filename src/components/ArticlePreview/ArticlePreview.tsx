@@ -34,11 +34,11 @@ export function ArticlePreview({
 
   return (
     <div className='article-preview'>
-      <div style={{ display: 'flex', gap: 20, height: 250, overflow: 'hidden' }}>
+      <div className='video-preview'>
         {/*@ts-ignore*/}
         <ReactPlayer url={link} height={250} width={350} />
-        <div style={{ width: 'calc(100% - 350px)' }}>
-          <p style={{ color: 'red' }}>{videoData?.title}</p>
+        <div className='video-info'>
+          <p className='video-title'>{videoData?.title}</p>
           <p>Shared by: {sharedBy}</p>
 
           <p>{videoData?.description}</p>
