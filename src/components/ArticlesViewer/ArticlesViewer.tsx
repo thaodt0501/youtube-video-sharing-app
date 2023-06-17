@@ -80,14 +80,9 @@ function ArticleList({ articles }: { articles: ArticleViewerState['articles'] })
           </div>
         )}
         {articles.map(({ article, isSubmitting }, index) => (
-          <ArticlePreview
-            key={article._id}
-            article={article}
-            isSubmitting={isSubmitting}
-          />
+          <ArticlePreview key={article._id} article={article} isSubmitting={isSubmitting} />
         ))}
       </>
     ),
   });
 }
-
